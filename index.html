@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT Fire Detection Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Industrial Safety Network</p>
+        <h1>IoT Fire Detection Dashboard</h1>
+      </div>
+      <div class="live-pill" id="connectionStatus">
+        <span class="live-dot"></span>
+        <span>Awaiting Data</span>
+      </div>
+    </header>
+
+    <section class="hero-panel" id="heroPanel">
+      <div class="hero-copy">
+        <p class="hero-label">Realtime Zone Status</p>
+        <h2 id="heroTitle">System Stable</h2>
+        <p id="heroText">Monitoring environmental risk signals from the fire detection node.</p>
+      </div>
+      <div class="alert-orb-wrap">
+        <div class="alert-orb" id="alertOrb">
+          <span class="orb-ring"></span>
+          <span class="orb-core">!</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <article class="metric-card temp-card">
+        <div class="card-icon">&#127777;</div>
+        <p class="card-label">Temperature</p>
+        <h3 id="temperatureValue">--<span>&deg;C</span></h3>
+        <p class="card-foot">Thermal sensor feed</p>
+      </article>
+
+      <article class="metric-card smoke-card">
+        <div class="card-icon">&#9729;</div>
+        <p class="card-label">Smoke Level</p>
+        <h3 id="smokeValue">--<span> ppm</span></h3>
+        <p class="card-foot">Particle concentration</p>
+      </article>
+
+      <article class="metric-card status-card" id="statusCard">
+        <div class="card-icon">&#128293;</div>
+        <p class="card-label">Fire Status</p>
+        <h3 id="fireValue">Checking</h3>
+        <p class="card-foot" id="statusFoot">Waiting for ThingSpeak response</p>
+      </article>
+    </section>
+
+    <section class="alert-banner" id="alertBanner">
+      <div class="alert-icon" id="alertIcon">&#9888;</div>
+      <div>
+        <p class="alert-title">Critical Fire Alert</p>
+        <p class="alert-text">Fire detected. Immediate inspection and suppression response required.</p>
+      </div>
+    </section>
+
+    <section class="charts-grid">
+      <article class="chart-card">
+        <div class="chart-head">
+          <div>
+            <p class="chart-label">Temperature Trend</p>
+            <h3>Realtime Thermal Graph</h3>
+          </div>
+          <span class="chart-badge chart-temp">15s Feed</span>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="temperatureChart"></canvas>
+        </div>
+      </article>
+
+      <article class="chart-card">
+        <div class="chart-head">
+          <div>
+            <p class="chart-label">Smoke Trend</p>
+            <h3>Realtime Smoke Graph</h3>
+          </div>
+          <span class="chart-badge chart-smoke">15s Feed</span>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="smokeChart"></canvas>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <div class="toast" id="fireToast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-icon">&#128293;</div>
+    <div>
+      <p class="toast-title">Fire Detected</p>
+      <p class="toast-text">Critical alert received from the IoT fire sensor network.</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
